@@ -11,6 +11,7 @@ import com.twms.twms_f_m_android.repository.AuthRepository
 import com.twms.twms_f_m_android.repository.AuthRepositoryImpl
 import com.twms.twms_f_m_android.repository.PutawayRepository
 import com.twms.twms_f_m_android.repository.PutawayRepositoryImpl
+import com.twms.twms_f_m_android.ui.putaway.PutawayAdapter
 import com.twms.twms_f_m_android.util.AuthInterceptor
 import com.twms.twms_f_m_android.util.TokenManager
 import dagger.Module
@@ -81,4 +82,8 @@ object NetworkModule {
     fun providePutawayRepository(
         putawayApi: PutawayApi
     ) = PutawayRepositoryImpl(putawayApi) as PutawayRepository
+
+    @Provides
+    @Singleton
+    fun provideReceivingAdapter(): PutawayAdapter = PutawayAdapter()
 }

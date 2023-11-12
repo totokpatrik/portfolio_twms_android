@@ -1,5 +1,6 @@
 package com.twms.twms_f_m_android.ui.putaway
 
+import android.annotation.SuppressLint
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,8 +12,10 @@ class PutawayAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
     private var putaways = mutableListOf<Putaway>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setPutawayList(putaways: List<Putaway>) {
         this.putaways = putaways.toMutableList()
+        notifyDataSetChanged()
     }
 
     private var onItemClickListener: ((Putaway) -> Unit)? = null
