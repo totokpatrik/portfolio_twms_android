@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.twms.twms_f_m_android'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId 'com.twms.twms_f_m_android'
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -44,11 +44,7 @@ android {
     }
     buildFeatures {
         viewBinding  true
-        compose true
         buildConfig true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.4.0'
     }
     packagingOptions {
         resources {
@@ -62,54 +58,47 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //--Local Unit Tests
-    implementation "androidx.test:core:1.4.0"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.5.1'
-    implementation platform('androidx.compose:compose-bom:2022.10.00')
-    implementation 'androidx.datastore:datastore-core:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.test:core:1.5.0"
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.google.truth:truth:1.0.1'
     testImplementation 'org.mockito:mockito-core:4.3.1'
     testImplementation 'org.mockito:mockito-inline:4.3.1'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.5.31'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.8.22'
 
     //--Instrumented Unit Tests
-    androidTestImplementation 'androidx.test:core:1.4.0'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.5'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation 'com.google.truth:truth:1.0.1'
     androidTestImplementation 'org.mockito:mockito-core:4.3.1'
     androidTestImplementation 'org.mockito:mockito-android:4.3.1'
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.39.1'
-    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
-    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.5.31'
-    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
-    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.39.1'
-    debugImplementation 'androidx.fragment:fragment-testing:1.4.1'
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    androidTestImplementation "androidx.arch.core:core-testing:2.2.0"
+    androidTestImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.8.22'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.2'
 
     //--Activity
     def activity_version = "1.5.0-alpha03"
     implementation "androidx.activity:activity-ktx:$activity_version"
 
     //--Fragment
-    def fragment_version = "1.5.0-alpha03"
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:1.7.0-alpha06"
 
     //--Hilt
     def hilt_version = '2.44'
@@ -117,8 +106,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //--LiveData and LifeCycle
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
 
     //--Retrofit2
     def retrofit_version = "2.9.0"
@@ -128,17 +117,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
 
-
-    //--Paging3
-    def paging_version = "3.1.0"
-    implementation "androidx.paging:paging-runtime:$paging_version"
-
     //--jetpack navigation component
-    def nav_version = "2.5.0-alpha03"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.5"
+    implementation "androidx.navigation:navigation-runtime-ktx:2.7.5"
+    androidTestImplementation "androidx.navigation:navigation-testing:2.7.5"
 
     //--Swipe Refresh
     def swipe_version = "1.1.0"

@@ -6,8 +6,9 @@
     tools:context=".ui.menu.MenuFragment">
 
     <TextView
+        android:id="@+id/tvMenuHello"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:text="@string/hello_from_menu" />
 
 </FrameLayout>

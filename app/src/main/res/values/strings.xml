@@ -4,4 +4,5 @@
     <string name="password">password</string>
     <string name="user_id">user_id</string>
     <string name="login">login</string>
+    <string name="hello_from_menu">Hello from menu</string>
 </resources>

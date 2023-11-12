@@ -32,16 +32,21 @@ class AuthInterceptor @Inject constructor(
 
         val response = chain.proceed(request.build())
 
-        val asd = response.headers("Set-Cookie").toString()
-
         if (response.headers("Set-Cookie").isNotEmpty()) {
             runBlocking { tokenManager.saveCookie(response.headers("Set-Cookie").toString()) }
         }
 
+        if (response.code == 404 && response.request.url.toString().contains("login")) {
+            runBlocking {
+                tokenManager.deleteToken()
+                tokenManager.deleteCookie()
+            }
+        }
+
         if (response.code == 401) {
             runBlocking {
-                tokenManager.deleteToken();
-                tokenManager.deleteCookie();
+                tokenManager.deleteToken()
+                tokenManager.deleteCookie()
             }
 
             val intent = Intent(context, MainActivity::class.java)
