@@ -16,7 +16,6 @@ import com.twms.twms_f_m_android.databinding.FragmentLoginBinding
 import com.twms.twms_f_m_android.util.Status
 import com.twms.twms_f_m_android.util.TokenViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -65,7 +64,5 @@ class LoginFragment : Fragment() {
                 Auth(binding.txtUserId.text.toString(), binding.txtPassword.text.toString())
             )
         }
-
     }
-
 }

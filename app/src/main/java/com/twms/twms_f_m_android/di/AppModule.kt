@@ -5,9 +5,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.twms.twms_f_m_android.BuildConfig
-import com.twms.twms_f_m_android.data.network.Api
+import com.twms.twms_f_m_android.data.network.AuthApi
+import com.twms.twms_f_m_android.data.network.PutawayApi
 import com.twms.twms_f_m_android.repository.AuthRepository
 import com.twms.twms_f_m_android.repository.AuthRepositoryImpl
+import com.twms.twms_f_m_android.repository.PutawayRepository
+import com.twms.twms_f_m_android.repository.PutawayRepositoryImpl
 import com.twms.twms_f_m_android.util.AuthInterceptor
 import com.twms.twms_f_m_android.util.TokenManager
 import dagger.Module
@@ -55,14 +58,27 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): Api {
+    fun provideApiService(retrofit: Retrofit): AuthApi {
         return retrofit
-            .create(Api::class.java)
+            .create(AuthApi::class.java)
     }
 
     @Singleton
     @Provides
     fun provideAuthRepository(
-        api: Api
-    ) = AuthRepositoryImpl(api) as AuthRepository
+        authApi: AuthApi
+    ) = AuthRepositoryImpl(authApi) as AuthRepository
+
+    @Singleton
+    @Provides
+    fun providePutawayApiService(retrofit: Retrofit): PutawayApi {
+        return retrofit
+            .create(PutawayApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providePutawayRepository(
+        putawayApi: PutawayApi
+    ) = PutawayRepositoryImpl(putawayApi) as PutawayRepository
 }

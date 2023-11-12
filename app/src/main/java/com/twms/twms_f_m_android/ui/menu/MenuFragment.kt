@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.twms.twms_f_m_android.R
 import com.twms.twms_f_m_android.databinding.FragmentMenuBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,5 +31,8 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        binding.btnPutaway.setOnClickListener{
+            navController.navigate(R.id.action_menuFragment_to_putawayFragment)
+        }
     }
 }

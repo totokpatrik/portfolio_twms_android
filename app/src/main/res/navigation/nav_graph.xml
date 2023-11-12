@@ -18,5 +18,34 @@
         android:id="@+id/menuFragment"
         android:name="com.twms.twms_f_m_android.ui.menu.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_putawayFragment"
+            app:destination="@id/putawayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/putawayFragment"
+        android:name="com.twms.twms_f_m_android.ui.putaway.PutawayFragment"
+        android:label="fragment_putaway"
+        tools:layout="@layout/fragment_putaway" >
+        <action
+            android:id="@+id/action_putawayFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_putawayFragment_to_putawayDetailFragment"
+            app:destination="@id/putawayDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/putawayDetailFragment"
+        android:name="com.twms.twms_f_m_android.ui.putaway.PutawayDetailFragment"
+        android:label="fragment_putaway_detail"
+        tools:layout="@layout/fragment_putaway_detail" >
+        <!--suppress NavigationFile https://issuetracker.google.com/issues/293665984 -->
+        <argument
+            android:name="putaway"
+            app:argType="com.twms.twms_f_m_android.data.model.Putaway" />
+        <action
+            android:id="@+id/action_putawayDetailFragment_to_putawayFragment"
+            app:destination="@id/putawayFragment" />
+    </fragment>
 </navigation>

@@ -5,4 +5,9 @@
     <string name="user_id">user_id</string>
     <string name="login">login</string>
     <string name="hello_from_menu">Hello from menu</string>
+    <string name="receiving">Receiving</string>
+    <string name="putaway">Putaway</string>
+    <string name="pallet_number">Pallet Number</string>
+    <string name="location">Location</string>
+    <string name="source_location">Source Location</string>
 </resources>
