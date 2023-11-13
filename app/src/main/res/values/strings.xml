@@ -10,4 +10,12 @@
     <string name="pallet_number">Pallet Number</string>
     <string name="location">Location</string>
     <string name="source_location">Source Location</string>
+    <string name="Percentage">&#160;%</string>
+    <string name="inbound_order">Inbound Order:</string>
+    <string name="item">Item</string>
+    <string name="quantity">Quantity</string>
+    <string name="receive">Receive</string>
+    <string name="inbound_shipment">Inbound shipment:</string>
+    <string name="inbound_orders">Inbound orders</string>
+    <string name="close_inbound">Close inbound</string>
 </resources>

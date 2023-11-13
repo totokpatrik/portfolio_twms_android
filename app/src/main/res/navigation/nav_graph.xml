@@ -20,8 +20,60 @@
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
+            android:id="@+id/action_menuFragment_to_receivingFragment"
+            app:destination="@id/receivingFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="false" />
+        <action
             android:id="@+id/action_menuFragment_to_putawayFragment"
             app:destination="@id/putawayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receivingFragment"
+        android:name="com.twms.twms_f_m_android.ui.receiving.ReceivingFragment"
+        android:label="fragment_receiving"
+        tools:layout="@layout/fragment_receiving" >
+        <action
+            android:id="@+id/action_receivingFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_receivingFragment_to_inboundShipmentFragment"
+            app:destination="@id/inboundShipmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inboundShipmentFragment"
+        android:name="com.twms.twms_f_m_android.ui.inbound_shipment.InboundShipmentFragment"
+        android:label="fragment_inbound_shipment"
+        tools:layout="@layout/fragment_inbound_shipment" >
+
+        <argument
+            android:name="inbound_shipment"
+            app:argType="com.twms.twms_f_m_android.data.model.InboundShipment"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_inboundShipmentFragment_to_receivingFragment"
+            app:destination="@id/receivingFragment" />
+        <action
+            android:id="@+id/action_inboundShipmentFragment_to_receiveFragment"
+            app:destination="@id/receiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiveFragment"
+        android:name="com.twms.twms_f_m_android.ui.receive.ReceiveFragment"
+        android:label="fragment_receive"
+        tools:layout="@layout/fragment_receive" >
+        <argument
+            android:name="inbound_order"
+            app:argType="com.twms.twms_f_m_android.data.model.ReceiveLine" />
+        <argument
+            android:name="inbound_shipment"
+            app:argType="com.twms.twms_f_m_android.data.model.InboundShipment"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_receiveFragment_to_inboundShipmentFragment"
+            app:destination="@id/inboundShipmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/putawayFragment"
@@ -40,12 +92,11 @@
         android:name="com.twms.twms_f_m_android.ui.putaway.PutawayDetailFragment"
         android:label="fragment_putaway_detail"
         tools:layout="@layout/fragment_putaway_detail" >
-        <!--suppress NavigationFile https://issuetracker.google.com/issues/293665984 -->
-        <argument
-            android:name="putaway"
-            app:argType="com.twms.twms_f_m_android.data.model.Putaway" />
         <action
             android:id="@+id/action_putawayDetailFragment_to_putawayFragment"
             app:destination="@id/putawayFragment" />
+        <argument
+            android:name="putaway"
+            app:argType="com.twms.twms_f_m_android.data.model.Putaway" />
     </fragment>
 </navigation>
