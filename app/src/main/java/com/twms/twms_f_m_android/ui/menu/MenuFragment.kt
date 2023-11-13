@@ -34,5 +34,9 @@ class MenuFragment : Fragment() {
         binding.btnPutaway.setOnClickListener{
             navController.navigate(R.id.action_menuFragment_to_putawayFragment)
         }
+
+        binding.btnReceiving.setOnClickListener {
+            navController.navigate(R.id.action_menuFragment_to_receivingFragment)
+        }
     }
 }
