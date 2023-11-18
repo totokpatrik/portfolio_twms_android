@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface InboundShipmentRepository {
     fun getShipment(id: String): Flow<Resource<CustomResponse<List<ReceiveLine>>>>
-    fun closeShipment(id: Number): Flow<Resource<CustomResponse<String>>>
+    fun closeShipment(inboundShipmentId: Number): Flow<Resource<CustomResponse<String>>>
 }

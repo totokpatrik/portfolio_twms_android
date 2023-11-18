@@ -49,6 +49,7 @@ class InboundShipmentFragment : Fragment() {
         binding.tvInboundShipment.text = inboundShipment.name
         binding.tvLocation.text = inboundShipment.location!!.name
 
+        viewModel.getShipment(inboundShipment.id.toString())
 
         inboundShipmentAdapter.setOnItemClickListener {
             val bundle = bundleOf("inbound_order" to it, "inbound_shipment" to inboundShipment)
@@ -58,18 +59,12 @@ class InboundShipmentFragment : Fragment() {
             )
         }
 
-        viewModel.getShipment(inboundShipment.id.toString())
-
         viewModel.inboundShipmentResponse.observe(viewLifecycleOwner) { result ->
             when (result.status) {
-                Status.LOADING -> {
-
-                }
-
+                Status.LOADING -> {}
                 Status.SUCCESS -> {
                     inboundShipmentAdapter.setInboundShipmentList(result.data?.data!!)
                 }
-
                 Status.ERROR -> {
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }
@@ -82,14 +77,10 @@ class InboundShipmentFragment : Fragment() {
 
         viewModel.inboundShipmentCloseResponse.observe(viewLifecycleOwner) { result ->
             when (result.status) {
-                Status.LOADING -> {
-
-                }
-
+                Status.LOADING -> {}
                 Status.SUCCESS -> {
                     navController.navigate(R.id.action_inboundShipmentFragment_to_receivingFragment)
                 }
-
                 Status.ERROR -> {
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }
@@ -106,5 +97,10 @@ class InboundShipmentFragment : Fragment() {
                     navController.navigate(R.id.action_inboundShipmentFragment_to_receivingFragment)
                 }
             })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getShipment(inboundShipment.id.toString())
     }
 }

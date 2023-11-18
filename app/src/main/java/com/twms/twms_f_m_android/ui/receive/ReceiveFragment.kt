@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.twms.twms_f_m_android.data.model.InboundShipment
 import com.twms.twms_f_m_android.data.model.Receive
 import com.twms.twms_f_m_android.data.model.ReceiveLine
 import com.twms.twms_f_m_android.databinding.FragmentReceiveBinding
+import com.twms.twms_f_m_android.util.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,8 +70,18 @@ class ReceiveFragment : Fragment() {
             )
 
             viewModel.receive(receive)
+        }
 
-            navigateToInboundShipment(inboundShipment)
+        viewModel.receiveResponse.observe(viewLifecycleOwner) {result ->
+            when(result.status) {
+                Status.LOADING -> {}
+                Status.SUCCESS -> {
+                    navigateToInboundShipment(inboundShipment)
+                }
+                Status.ERROR -> {
+                    Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
     }

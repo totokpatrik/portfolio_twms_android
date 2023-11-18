@@ -7,6 +7,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.twms.twms_f_m_android.BuildConfig
 import com.twms.twms_f_m_android.data.network.AuthApi
 import com.twms.twms_f_m_android.data.network.InboundShipmentApi
+import com.twms.twms_f_m_android.data.network.OutboundShipmentApi
+import com.twms.twms_f_m_android.data.network.PickingApi
 import com.twms.twms_f_m_android.data.network.PutawayApi
 import com.twms.twms_f_m_android.data.network.ReceiveApi
 import com.twms.twms_f_m_android.data.network.ReceivingApi
@@ -14,6 +16,10 @@ import com.twms.twms_f_m_android.repository.AuthRepository
 import com.twms.twms_f_m_android.repository.AuthRepositoryImpl
 import com.twms.twms_f_m_android.repository.InboundShipmentRepository
 import com.twms.twms_f_m_android.repository.InboundShipmentRepositoryImpl
+import com.twms.twms_f_m_android.repository.OutboundShipmentRepository
+import com.twms.twms_f_m_android.repository.OutboundShipmentRepositoryImpl
+import com.twms.twms_f_m_android.repository.PickingRepository
+import com.twms.twms_f_m_android.repository.PickingRepositoryImpl
 import com.twms.twms_f_m_android.repository.PutawayRepository
 import com.twms.twms_f_m_android.repository.PutawayRepositoryImpl
 import com.twms.twms_f_m_android.repository.ReceiveRepository
@@ -21,6 +27,7 @@ import com.twms.twms_f_m_android.repository.ReceiveRepositoryImpl
 import com.twms.twms_f_m_android.repository.ReceivingRepository
 import com.twms.twms_f_m_android.repository.ReceivingRepositoryImpl
 import com.twms.twms_f_m_android.ui.inbound_shipment.InboundShipmentAdapter
+import com.twms.twms_f_m_android.ui.picking.PickingAdapter
 import com.twms.twms_f_m_android.ui.putaway.PutawayAdapter
 import com.twms.twms_f_m_android.ui.receiving.ReceivingAdapter
 import com.twms.twms_f_m_android.util.AuthInterceptor
@@ -144,5 +151,35 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideReceivingAdapter(): ReceivingAdapter = ReceivingAdapter()
+
+    @Singleton
+    @Provides
+    fun provideOutboundShipmentApiService(retrofit: Retrofit): OutboundShipmentApi {
+        return retrofit
+            .create(OutboundShipmentApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOutboundShipmentRepository(
+        outboundShipmentApi: OutboundShipmentApi
+    ) = OutboundShipmentRepositoryImpl(outboundShipmentApi) as OutboundShipmentRepository
+
+    @Provides
+    @Singleton
+    fun provideOutboundShipmentAdapter(): PickingAdapter = PickingAdapter()
+
+    @Singleton
+    @Provides
+    fun providePickingApiService(retrofit: Retrofit): PickingApi {
+        return retrofit
+            .create(PickingApi::class.java)
+    }
+    @Singleton
+    @Provides
+    fun providePickingRepository(
+        pickingApi: PickingApi
+    ) = PickingRepositoryImpl(pickingApi) as PickingRepository
+
 
 }

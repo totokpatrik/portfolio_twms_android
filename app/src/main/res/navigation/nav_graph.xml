@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_menuFragment_to_putawayFragment"
             app:destination="@id/putawayFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_pickingFragment"
+            app:destination="@id/pickingFragment" />
     </fragment>
     <fragment
         android:id="@+id/receivingFragment"
@@ -98,5 +101,59 @@
         <argument
             android:name="putaway"
             app:argType="com.twms.twms_f_m_android.data.model.Putaway" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickingFragment"
+        android:name="com.twms.twms_f_m_android.ui.picking.PickingFragment"
+        android:label="PickingFragment" >
+        <action
+            android:id="@+id/action_pickingFragment_to_pickingStartFragment"
+            app:destination="@id/pickingStartFragment" />
+        <action
+            android:id="@+id/action_pickingFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickingStartFragment"
+        android:name="com.twms.twms_f_m_android.ui.picking.PickingStartFragment"
+        android:label="fragment_picking_start"
+        tools:layout="@layout/fragment_picking_start" >
+        <action
+            android:id="@+id/action_pickingStartFragment_to_pickingPickFragment"
+            app:destination="@id/pickingPickFragment" />
+        <argument
+            android:name="outboundShipmentId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickingFinishFragment"
+        android:name="com.twms.twms_f_m_android.ui.picking.PickingFinishFragment"
+        android:label="fragment_picking_finish"
+        tools:layout="@layout/fragment_picking_finish" >
+        <action
+            android:id="@+id/action_pickingFinishFragment_to_pickingStartFragment"
+            app:destination="@id/pickingStartFragment" />
+        <argument
+            android:name="outboundShipmentId"
+            app:argType="integer" />
+        <argument android:name="inventory"
+            app:argType="com.twms.twms_f_m_android.data.model.Inventory" />
+        <action
+            android:id="@+id/action_pickingFinishFragment_to_pickingFragment"
+            app:destination="@id/pickingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pickingPickFragment"
+        android:name="com.twms.twms_f_m_android.ui.picking.PickingPickFragment"
+        android:label="fragment_picking_pick"
+        tools:layout="@layout/fragment_picking_pick" >
+        <action
+            android:id="@+id/action_pickingPickFragment_to_pickingFinishFragment"
+            app:destination="@id/pickingFinishFragment" />
+        <argument
+            android:name="outboundShipmentId"
+            app:argType="integer" />
+        <argument android:name="inventory"
+            app:argType="com.twms.twms_f_m_android.data.model.Inventory" />
     </fragment>
 </navigation>

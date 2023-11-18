@@ -38,5 +38,9 @@ class MenuFragment : Fragment() {
         binding.btnReceiving.setOnClickListener {
             navController.navigate(R.id.action_menuFragment_to_receivingFragment)
         }
+
+        binding.btnPicking.setOnClickListener {
+            navController.navigate(R.id.action_menuFragment_to_pickingFragment)
+        }
     }
 }

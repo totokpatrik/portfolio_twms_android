@@ -33,7 +33,7 @@ class PutawayAdapter: RecyclerView.Adapter<MainViewHolder>() {
         val putaway = putaways[position]
 
         holder.binding.otfPalletNumber.editText?.text = SpannableStringBuilder(putaway.inventory.palletNumber)
-        holder.binding.otfLocation.editText?.text = SpannableStringBuilder(putaway.inventory.location.name)
+        holder.binding.otfLocation.editText?.text = SpannableStringBuilder(putaway.inventory.location?.name)
 
         holder.binding.itemLayout.setOnClickListener{
             onItemClickListener?.let {

@@ -10,11 +10,12 @@ import com.twms.twms_f_m_android.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-@HiltViewModel
-class PutawayDetailViewModel @Inject constructor  (
-    private val putawayRepository: PutawayRepository
-) : ViewModel() {
 
+@HiltViewModel
+class PutawayDetailViewModel@Inject
+constructor(
+    private val putawayRepository: PutawayRepository
+): ViewModel() {
     private val _putawayRejectResponse = MutableLiveData<Resource<CustomResponse<Putaway>>>()
     val putawayRejectResponse = _putawayRejectResponse
 
@@ -35,7 +36,7 @@ class PutawayDetailViewModel @Inject constructor  (
         viewModelScope.launch {
             putawayRepository
                 .putaway(putawayId)
-                .collect {
+                .collect{
                     _putawayResponse.value = it
                 }
         }

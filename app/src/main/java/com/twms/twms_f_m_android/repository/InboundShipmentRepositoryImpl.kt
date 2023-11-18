@@ -22,12 +22,12 @@ constructor(
         }
     }
 
-    override fun closeShipment(id: Number): Flow<Resource<CustomResponse<String>>> = flow {
+    override fun closeShipment(inboundShipmentId: Number): Flow<Resource<CustomResponse<String>>> = flow {
         try {
             emit(Resource.loading(null))
-            emit(Resource.success(api.closeShipment(id)))
+            emit(Resource.success(api.closeShipment(inboundShipmentId)))
         } catch (e: Exception) {
-            emit(Resource.error("Check Network Connection!",null))
+            emit(Resource.error(e.message.toString(),null))
         }
     }
 

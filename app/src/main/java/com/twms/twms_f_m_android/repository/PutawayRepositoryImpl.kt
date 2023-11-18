@@ -27,7 +27,7 @@ constructor(
             emit(Resource.loading(null))
             emit(Resource.success(api.acknowledge(putawayId)))
         } catch (e: Exception) {
-            emit(Resource.error("Check Network Connection!",null))
+            emit(Resource.error("Putaway not possible!",null))
         }
     }
 

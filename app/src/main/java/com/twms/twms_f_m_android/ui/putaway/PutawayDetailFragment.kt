@@ -17,6 +17,7 @@ import com.twms.twms_f_m_android.data.model.Putaway
 import com.twms.twms_f_m_android.databinding.FragmentPutawayDetailBinding
 import com.twms.twms_f_m_android.util.Status
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class PutawayDetailFragment : Fragment() {
     private lateinit var binding: FragmentPutawayDetailBinding
@@ -41,7 +42,7 @@ class PutawayDetailFragment : Fragment() {
 
         putaway = args.putaway
 
-        binding.otfSourceLocation.editText?.text = SpannableStringBuilder(putaway.inventory.location.name)
+        binding.otfSourceLocation.editText?.text = SpannableStringBuilder(putaway.inventory.location?.name)
         binding.otfPalletNumber.editText?.text = SpannableStringBuilder(putaway.inventory.palletNumber)
         val destinationLocation = "Destination Location " + putaway.destinationLocation?.name
         binding.otfDestinationLocation.hint = destinationLocation
@@ -50,8 +51,7 @@ class PutawayDetailFragment : Fragment() {
             if (binding.otfDestinationLocation.editText?.text.toString() == putaway.destinationLocation?.name) {
                 viewModel.putaway(putaway.id.toInt())
             } else {
-                Toast.makeText(activity, "The destination location is not matching" + putaway.destinationLocation?.name + "   " + binding.otfDestinationLocation.editText?.text,
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "The destination location is not matching" + putaway.destinationLocation?.name + "   " + binding.otfDestinationLocation.editText?.text,Toast.LENGTH_LONG).show()
             }
         }
 
@@ -63,6 +63,7 @@ class PutawayDetailFragment : Fragment() {
                 }
                 Status.ERROR -> {
                     Toast.makeText(activity, result.message,Toast.LENGTH_SHORT).show()
+                    navController.navigate(R.id.action_putawayDetailFragment_to_putawayFragment)
                 }
             }
         }
@@ -79,6 +80,7 @@ class PutawayDetailFragment : Fragment() {
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {

@@ -10,6 +10,6 @@ interface InboundShipmentApi {
             CustomResponse<List<ReceiveLine>>
 
     @POST("Receiving/Close")
-    suspend fun closeShipment(@Body inboundShipmentId: Number):
+    suspend fun closeShipment(@Query("inboundShipmentId")inboundShipmentId: Number):
             CustomResponse<String>
 }

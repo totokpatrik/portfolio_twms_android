@@ -16,6 +16,7 @@ import com.twms.twms_f_m_android.databinding.FragmentPutawayBinding
 import com.twms.twms_f_m_android.util.Status
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 @AndroidEntryPoint
 class PutawayFragment : Fragment() {
     private lateinit var binding: FragmentPutawayBinding
@@ -39,6 +40,7 @@ class PutawayFragment : Fragment() {
         navController = Navigation.findNavController(view)
 
         binding.recycleView.adapter = putawayAdapter
+        binding.recycleView.isNestedScrollingEnabled = false
 
         viewModel.getAllPutaway()
 
@@ -65,14 +67,16 @@ class PutawayFragment : Fragment() {
         viewModel.putawayAcknowledge.observe(viewLifecycleOwner) {result ->
             when(result.status) {
                 Status.LOADING -> {
-                    putawayAdapter.setPutawayList(emptyList())
+                    binding.recycleView.visibility = View.INVISIBLE
                     binding.ldgLoading.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
-                    val bundle = bundleOf("putaway" to result.data?.data)
+                    val bundle = bundleOf("putaway" to result.data?.data!!)
                     navController.navigate(R.id.action_putawayFragment_to_putawayDetailFragment, bundle)
                 }
                 Status.ERROR -> {
+                    binding.recycleView.visibility = View.VISIBLE
+                    binding.ldgLoading.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message,Toast.LENGTH_SHORT).show()
                 }
             }

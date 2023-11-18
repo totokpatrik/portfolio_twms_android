@@ -31,10 +31,10 @@ constructor(
         }
     }
 
-    fun closeShipment(id: Number) {
+    fun closeShipment(inboundShipmentId: Number) {
         viewModelScope.launch {
             inboundShipmentRepository
-                .closeShipment(id)
+                .closeShipment(inboundShipmentId)
                 .collect { inboundShipmentCloseResponse.value = it  }
         }
     }
