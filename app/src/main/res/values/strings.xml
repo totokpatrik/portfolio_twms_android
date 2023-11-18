@@ -34,4 +34,6 @@
     <string name="finish">Finish</string>
     <string name="complete">Complete</string>
     <string name="imgdone">imgDone</string>
+    <string name="no_more_putaway">No more putaway</string>
+    <string name="no_more_picking">No more picking</string>
 </resources>

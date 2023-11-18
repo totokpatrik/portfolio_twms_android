@@ -53,9 +53,11 @@ class LoadingFragment : Fragment() {
         viewModel.getResponse.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Status.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
 
                 Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     loadingAdapter.setLoadList(result.data?.data!!)
                     if (result.data.data.isEmpty()) {
                         binding.tvEmpty.visibility = View.VISIBLE
@@ -63,6 +65,7 @@ class LoadingFragment : Fragment() {
                 }
 
                 Status.ERROR -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }
             }

@@ -56,9 +56,13 @@ class PutawayFragment : Fragment() {
                 }
                 Status.SUCCESS -> {
                     putawayAdapter.setPutawayList(result.data?.data!!)
+                    if (result.data.data.isEmpty()) {
+                        binding.tvEmpty.visibility = View.VISIBLE
+                    }
                     binding.ldgLoading.visibility = View.INVISIBLE
                 }
                 Status.ERROR -> {
+                    binding.ldgLoading.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message,Toast.LENGTH_SHORT).show()
                 }
             }

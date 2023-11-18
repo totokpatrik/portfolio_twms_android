@@ -49,18 +49,22 @@ class ReceivingFragment : Fragment() {
 
         viewModel.getAllReceivingInboundShipment()
 
-        viewModel.receivingResponse.observe(viewLifecycleOwner) {result ->
-            when(result.status) {
+        viewModel.receivingResponse.observe(viewLifecycleOwner) { result ->
+            when (result.status) {
                 Status.LOADING -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
+
                 Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     receivingAdapter.setInboundShipmentList(result.data?.data!!)
                     if (result.data.data.isEmpty()) {
                         binding.tvEmpty.visibility = View.VISIBLE
                     }
                 }
+
                 Status.ERROR -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }
             }

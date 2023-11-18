@@ -54,15 +54,17 @@ class PickingFragment : Fragment() {
         viewModel.outboundShipmentResponse.observe(viewLifecycleOwner) {result ->
             when(result.status) {
                 Status.LOADING -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     pickingAdapter.setOutboundShipmentList(result.data?.data!!)
                     if (result.data.data.isEmpty()) {
                         binding.tvEmpty.visibility = View.VISIBLE
                     }
                 }
                 Status.ERROR -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }
             }
