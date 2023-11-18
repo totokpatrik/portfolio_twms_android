@@ -10,5 +10,6 @@ data class Inventory(
     val palletNumber: String,
     val inventoryLines: List<InventoryLine>,
     val location: Location?,
-    val quantity: Int
+    val quantity: Int,
+    val isLoaded: Boolean
 ) : Parcelable

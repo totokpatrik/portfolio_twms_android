@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.twms.twms_f_m_android.BuildConfig
 import com.twms.twms_f_m_android.data.network.AuthApi
 import com.twms.twms_f_m_android.data.network.InboundShipmentApi
+import com.twms.twms_f_m_android.data.network.LoadingApi
 import com.twms.twms_f_m_android.data.network.OutboundShipmentApi
 import com.twms.twms_f_m_android.data.network.PickingApi
 import com.twms.twms_f_m_android.data.network.PutawayApi
@@ -16,6 +17,8 @@ import com.twms.twms_f_m_android.repository.AuthRepository
 import com.twms.twms_f_m_android.repository.AuthRepositoryImpl
 import com.twms.twms_f_m_android.repository.InboundShipmentRepository
 import com.twms.twms_f_m_android.repository.InboundShipmentRepositoryImpl
+import com.twms.twms_f_m_android.repository.LoadingRepository
+import com.twms.twms_f_m_android.repository.LoadingRepositoryImpl
 import com.twms.twms_f_m_android.repository.OutboundShipmentRepository
 import com.twms.twms_f_m_android.repository.OutboundShipmentRepositoryImpl
 import com.twms.twms_f_m_android.repository.PickingRepository
@@ -27,6 +30,8 @@ import com.twms.twms_f_m_android.repository.ReceiveRepositoryImpl
 import com.twms.twms_f_m_android.repository.ReceivingRepository
 import com.twms.twms_f_m_android.repository.ReceivingRepositoryImpl
 import com.twms.twms_f_m_android.ui.inbound_shipment.InboundShipmentAdapter
+import com.twms.twms_f_m_android.ui.loading.LoadingAdapter
+import com.twms.twms_f_m_android.ui.loading.LoadingDetailAdapter
 import com.twms.twms_f_m_android.ui.picking.PickingAdapter
 import com.twms.twms_f_m_android.ui.putaway.PutawayAdapter
 import com.twms.twms_f_m_android.ui.receiving.ReceivingAdapter
@@ -181,5 +186,24 @@ object NetworkModule {
         pickingApi: PickingApi
     ) = PickingRepositoryImpl(pickingApi) as PickingRepository
 
+    @Singleton
+    @Provides
+    fun provideLoadingApiService(retrofit: Retrofit): LoadingApi {
+        return retrofit
+            .create(LoadingApi::class.java)
+    }
+    @Singleton
+    @Provides
+    fun provideLoadingRepository(
+        loadingApi: LoadingApi
+    ) = LoadingRepositoryImpl(loadingApi) as LoadingRepository
+
+    @Provides
+    @Singleton
+    fun provideLoadingAdapter(): LoadingAdapter = LoadingAdapter()
+
+    @Provides
+    @Singleton
+    fun provideLoadingDetailAdapter(): LoadingDetailAdapter = LoadingDetailAdapter()
 
 }

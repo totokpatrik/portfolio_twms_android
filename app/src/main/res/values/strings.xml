@@ -29,4 +29,9 @@
     <string name="start_picking">Start picking</string>
     <string name="complete_pallet">Complete pallet</string>
     <string name="confirm">Confirm</string>
+    <string name="no_more_loading">No more loading.</string>
+    <string name="load">Load</string>
+    <string name="finish">Finish</string>
+    <string name="complete">Complete</string>
+    <string name="imgdone">imgDone</string>
 </resources>

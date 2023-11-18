@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_menuFragment_to_pickingFragment"
             app:destination="@id/pickingFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
     </fragment>
     <fragment
         android:id="@+id/receivingFragment"
@@ -155,5 +158,29 @@
             app:argType="integer" />
         <argument android:name="inventory"
             app:argType="com.twms.twms_f_m_android.data.model.Inventory" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.twms.twms_f_m_android.ui.loading.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" >
+        <action
+            android:id="@+id/action_loadingFragment_to_loadingDetailFragment"
+            app:destination="@id/loadingDetailFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingDetailFragment"
+        android:name="com.twms.twms_f_m_android.ui.loading.LoadingDetailFragment"
+        android:label="fragment_loading_detail"
+        tools:layout="@layout/fragment_loading_detail" >
+        <action
+            android:id="@+id/action_loadingDetailFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <argument
+            android:name="loadId"
+            app:argType="integer" />
     </fragment>
 </navigation>

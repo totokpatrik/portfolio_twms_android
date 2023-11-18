@@ -10,5 +10,6 @@ data class Location(
     val locationType: LocationType?,
     val maximumQuantity: Number,
     val pendingQuantity: Number,
-    val currentQuantity: Number
+    val currentQuantity: Number,
+    val inventories: List<Inventory>?
 ) : Parcelable

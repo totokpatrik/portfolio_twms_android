@@ -42,5 +42,9 @@ class MenuFragment : Fragment() {
         binding.btnPicking.setOnClickListener {
             navController.navigate(R.id.action_menuFragment_to_pickingFragment)
         }
+
+        binding.btnLoading.setOnClickListener {
+            navController.navigate(R.id.action_menuFragment_to_loadingFragment)
+        }
     }
 }
