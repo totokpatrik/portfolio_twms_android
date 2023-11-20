@@ -21,4 +21,13 @@ constructor(
             emit(Resource.error("Check Network Connection!",null))
         }
     }
+
+    override fun acknowledge(inboundShipmentId: Number): Flow<Resource<CustomResponse<String>>> = flow {
+        try {
+            emit(Resource.loading(null))
+            emit(Resource.success(api.acknowledge(inboundShipmentId)))
+        } catch (e: Exception) {
+            emit(Resource.error("Check Network Connection!",null))
+        }
+    }
 }

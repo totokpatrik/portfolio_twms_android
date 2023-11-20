@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.twms.twms_f_m_android.R
+import com.twms.twms_f_m_android.data.model.InboundShipment
 import com.twms.twms_f_m_android.databinding.FragmentReceivingBinding
 import com.twms.twms_f_m_android.util.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,8 @@ class ReceivingFragment : Fragment() {
 
     @Inject
     lateinit var receivingAdapter: ReceivingAdapter
+
+    private lateinit var inboundShipment: InboundShipment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,8 +46,8 @@ class ReceivingFragment : Fragment() {
         binding.recycleView.adapter = receivingAdapter
 
         receivingAdapter.setOnItemClickListener {
-            val bundle = bundleOf("inbound_shipment" to it)
-            navController.navigate(R.id.action_receivingFragment_to_inboundShipmentFragment, bundle)
+            inboundShipment = it
+            viewModel.acknowledge(inboundShipment.id)
         }
 
         viewModel.getAllReceivingInboundShipment()
@@ -64,6 +67,29 @@ class ReceivingFragment : Fragment() {
                 }
 
                 Status.ERROR -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.acknowledgeResponse.observe(viewLifecycleOwner) { result ->
+            when (result.status) {
+                Status.LOADING -> {
+                    binding.recycleView.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+
+                Status.SUCCESS -> {
+                    binding.recycleView.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
+                    val bundle = bundleOf("inbound_shipment" to inboundShipment)
+                    navController.navigate(R.id.action_receivingFragment_to_inboundShipmentFragment, bundle)
+
+                }
+
+                Status.ERROR -> {
+                    binding.recycleView.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.INVISIBLE
                     Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
                 }

@@ -7,4 +7,7 @@ import retrofit2.http.*
 interface ReceivingApi {
     @GET("Receiving/GetAllReceivingInboundShipment")
     suspend fun getAllReceivingInboundShipment(): CustomResponse<List<InboundShipment>>
+
+    @POST("Receiving/Acknowledge")
+    suspend fun acknowledge(@Query("inboundShipmentId")inboundSHipmentId: Number): CustomResponse<String>
 }

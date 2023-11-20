@@ -10,4 +10,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ReceivingRepository {
     fun getAllReceivingInboundShipment() : Flow<Resource<CustomResponse<List<InboundShipment>>>>
+    fun acknowledge(inboundShipmentId: Number) : Flow<Resource<CustomResponse<String>>>
 }

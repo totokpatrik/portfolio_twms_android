@@ -15,14 +15,26 @@ import javax.inject.Inject
 class ReceivingViewModel @Inject constructor  (
     private val receivingRepository: ReceivingRepository
 ) : ViewModel() {
-    private val _receivingResponse = MutableLiveData<Resource<CustomResponse<List<InboundShipment>>>>()
+    private val _receivingResponse =
+        MutableLiveData<Resource<CustomResponse<List<InboundShipment>>>>()
     val receivingResponse = _receivingResponse
+
+    private val _acknowledgeResponse = MutableLiveData<Resource<CustomResponse<String>>>()
+    val acknowledgeResponse = _acknowledgeResponse
 
     fun getAllReceivingInboundShipment() {
         viewModelScope.launch {
             receivingRepository
                 .getAllReceivingInboundShipment()
-                .collect { _receivingResponse.value = it  }
+                .collect { _receivingResponse.value = it }
+        }
+    }
+
+    fun acknowledge(inboundShipmentId: Number) {
+        viewModelScope.launch {
+            receivingRepository
+                .acknowledge(inboundShipmentId)
+                .collect { _acknowledgeResponse.value = it }
         }
     }
 }

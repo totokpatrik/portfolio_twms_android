@@ -7,5 +7,6 @@ data class Putaway(
     val id: Number,
     val destinationLocation: Location?,
     val assignedUser: User?,
-    val inventory: Inventory
+    val inventory: Inventory,
+    val sourcLocation: Location?
 ) : Parcelable
